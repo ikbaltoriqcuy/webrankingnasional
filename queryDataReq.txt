@@ -1,0 +1,52 @@
+<?php
+	include ('koneksi.php')
+	$q = $_GET['q'];
+?> 
+	<table id="contoh" class="table table-striped">
+  <thead>
+   <tr>
+        <th scope="col">No.</th>
+        <th>RANK</th>
+        <th>CLASS <?php echo $q; ?>
+			<select style="color:#000;" class="selectpicker" onchange="callDataClass()"> 
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+			</select>
+		</th>
+        <th>REG
+			
+			<select style="color:#000;" class="selectpicker"> 
+				<option value="">1</option>
+				<option value="">2</option>
+				<option value="">3</option>
+				<option value="">4</option>
+				<option value="">5</option>
+				<option value="">6</option>
+				<option value="">7</option>
+				
+			</select>
+		</th>
+        <th>WITEL</th>
+        <th>JAN</th>
+   </tr>
+ </thead>
+ 
+ <tbody align="center">
+ <?php
+	  $no = 1;
+	  $query = mysqli_query($conn,"SELECT * FROM migrasi WHERE reg ='".$q."'");
+	 while($data = mysqli_fetch_array($query)){
+	   echo "<tr scope='row'>";
+		echo "<td>$no";
+	   echo "<td>$data[rank]</td>";
+	   echo "<td>$data[class]</td>";
+		echo "<td>$data[reg]</td>";
+		echo "<td>$data[witel]</td>";
+	   echo "<td>$data[jan]</td>";
+		echo "</tr>";
+	   $no++;
+	  }
+ ?>
+ </tbody>
+</table>
